@@ -17,6 +17,7 @@ button { color:inherit; }
 .atlas-index strong { color:white; font-size:12px; }
 .header-actions { margin-left:auto; display:flex; align-items:center; gap:22px; }
 .about-button { border:0; background:none; cursor:pointer; font-size:12px; letter-spacing:.08em; }
+.upload-link { color:inherit; text-decoration:none; }
 .about-button span { margin-left:10px; color:#7fdcff; }
 .about-button .about-label { margin:0; color:inherit; }
 .language-button { min-width:42px; padding:7px 9px; border:1px solid rgba(255,255,255,.2); background:rgba(255,255,255,.035); color:#aeb9c1; font:500 9px 'DM Mono'; letter-spacing:.12em; cursor:pointer; transition:.2s; }
@@ -88,7 +89,7 @@ kbd { padding:4px 7px; border:1px solid #343b42; color:#69727a; font:400 9px 'DM
 @keyframes rise { from { opacity:0; transform:translateY(8px); } }
 
 @media(max-width:800px) {
-  .topbar { height:72px; padding:0 20px; }.atlas-index,.about-button,.legend,.hint,.coordinates { display:none; }
+  .topbar { height:72px; padding:0 20px; }.atlas-index,.about-button:not(.upload-link),.legend,.hint,.coordinates { display:none; }
   .header-actions { margin-left:auto; }
   .hero-copy { top:105px; left:20px; }.hero-copy h1 { font-size:39px; }.lede { font-size:11px; }
   .search-panel { left:20px; bottom:20px; width:calc(100vw - 40px); }.filters { flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; }

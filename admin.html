@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>数据上传 · KNIFE WORLD</title>
+  </head>
+  <body>
+    <main class="admin-shell">
+      <nav><a href="./">← 返回星图</a><span>ATLAS ADMIN</span></nav>
+      <section class="admin-card">
+        <p class="eyebrow">KNIFE WORLD · DATA INTAKE</p>
+        <h1>上传数据</h1>
+        <p class="intro">使用 Supabase 管理员账号登录，上传 JSON 数据。文件将经过结构检查后写入刀具、属性与关系表。</p>
+
+        <form id="login-form" class="login-form">
+          <label>邮箱<input id="email" type="email" autocomplete="username" required /></label>
+          <label>密码<input id="password" type="password" autocomplete="current-password" required /></label>
+          <button type="submit">管理员登录</button>
+        </form>
+
+        <section id="upload-panel" class="upload-panel" hidden>
+          <div class="session-row"><span id="session-email"></span><button id="logout" type="button">退出</button></div>
+          <label id="drop-zone" class="drop-zone">
+            <input id="file" type="file" accept="application/json,.json" />
+            <strong>选择或拖入 JSON 文件</strong>
+            <span>支持嵌套 attributes，或标准化的 knives / attributes / links</span>
+          </label>
+          <div class="actions">
+            <button id="download-template" type="button">下载数据模板</button>
+            <button id="upload" type="button" disabled>写入 Supabase</button>
+          </div>
+          <pre id="preview">等待选择文件</pre>
+        </section>
+        <p id="status" role="status"></p>
+      </section>
+    </main>
+    <script type="module" src="/src/admin.js"></script>
+  </body>
+</html>

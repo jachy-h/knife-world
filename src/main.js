@@ -19,7 +19,7 @@ app.innerHTML = `
       <span><b>${CONFIG.brand.title}</b><em>${CONFIG.brand.subtitle}</em></span>
     </a>
     <div class="atlas-index"><span>ATLAS INDEX</span><strong>${String(KNIVES.length).padStart(3, '0')}</strong></div>
-    <div class="header-actions"><button class="language-button" data-action="locale">${locale === 'zh' ? '中文' : 'EN'}</button><button class="about-button" data-action="about"><span class="about-label">${msg().about}</span> <span>↗</span></button></div>
+    <div class="header-actions"><a class="about-button upload-link" href="./submit.html">提交刀具 <span>↗</span></a><button class="language-button" data-action="locale">${locale === 'zh' ? '中文' : 'EN'}</button><button class="about-button" data-action="about"><span class="about-label">${msg().about}</span> <span>↗</span></button></div>
   </header>
 
   <section class="hero-copy">
@@ -433,6 +433,31 @@ function localizedFacetName(category, value, qualifier = '') {
   return (locale === 'zh' ? entry?.name_zh : entry?.name_en) || value;
 }
 
+function hasDetailValue(value) {
+  if (value == null) return false;
+  if (Array.isArray(value)) return value.length > 0;
+  if (typeof value !== 'string') return true;
+  const normalized = value.trim().toLowerCase();
+  return normalized !== '' && !['—', '-', 'unknown', 'n/a', 'null', 'undefined', '未知', '暂无'].includes(normalized);
+}
+
+function knifeDetailsMarkup(node) {
+  const bladeMaterial = node.materials?.find(material => material.part === 'blade')?.value;
+  const handleMaterial = node.materials?.find(material => material.part === 'handle')?.value;
+  const fields = [
+    [msg().field.bladeMaterial, bladeMaterial, value => localizedFacetName('material', value, 'blade')],
+    [msg().field.handleMaterial, handleMaterial, value => localizedFacetName('material', value, 'handle')],
+    [msg().field.lock, node.lock, value => localizedFacetName('lock', value)],
+    [msg().field.blade, node.blade],
+    [msg().field.weight, node.weight],
+    [msg().field.designer, node.designer, value => valueFor(value, locale)],
+    [msg().field.year, node.year],
+  ].filter(([, value]) => hasDetailValue(value));
+
+  if (!fields.length) return '';
+  return `<dl>${fields.map(([label, value, format]) => `<div><dt>${label}</dt><dd>${format ? format(value) : value}</dd></div>`).join('')}</dl>`;
+}
+
 function trustMarkup(node) {
   if (node.key === 'about') return '';
   const sources = Array.isArray(node.sources) ? node.sources : [];
@@ -456,11 +481,7 @@ function showDetail(node, focus = true) {
     <p class="detail-description">${nodeDescription(node)}</p>
     ${!isKnife && node.category === 'lock' ? lockDiagram(node.label, locale) : ''}
     ${trustMarkup(node)}
-    ${isKnife ? `<dl>
-      <div><dt>${msg().field.bladeMaterial}</dt><dd>${localizedFacetName('material', node.materials?.find(m => m.part === 'blade')?.value || '—', 'blade')}</dd></div><div><dt>${msg().field.handleMaterial}</dt><dd>${localizedFacetName('material', node.materials?.find(m => m.part === 'handle')?.value || '—', 'handle')}</dd></div>
-      <div><dt>${msg().field.lock}</dt><dd>${localizedFacetName('lock', node.lock)}</dd></div><div><dt>${msg().field.blade}</dt><dd>${node.blade}</dd></div>
-      <div><dt>${msg().field.weight}</dt><dd>${node.weight}</dd></div><div><dt>${msg().field.designer}</dt><dd>${valueFor(node.designer, locale)}</dd></div><div><dt>${msg().field.year}</dt><dd>${node.year}</dd></div>
-    </dl>` : `<div class="related-list">${relatedKnives.slice(0, 7).map(k => `<button data-node="${k.key}"><span>${nodeDisplayLabel(k)}</span><em>${localizedFacetName('brand', k.brand)}</em></button>`).join('')}</div>`}
+    ${isKnife ? knifeDetailsMarkup(node) : `<div class="related-list">${relatedKnives.slice(0, 7).map(k => `<button data-node="${k.key}"><span>${nodeDisplayLabel(k)}</span><em>${localizedFacetName('brand', k.brand)}</em></button>`).join('')}</div>`}
     <footer><span>${msg().connected}</span><strong>${isKnife ? (adjacency.get(node.key)?.size || 0) : relatedKnives.length}</strong></footer>
   `;
   detail.classList.add('open');

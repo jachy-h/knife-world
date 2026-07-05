@@ -25,11 +25,27 @@ npm run build
 - `src/main.js`：关系图构建、实例化 WebGL 渲染和交互。
 - `src/style.css`：界面视觉与响应式布局。
 
-目前包含 25 把演示数据，覆盖 Spyderco、Benchmade、Cold Steel、SOG、CRKT、三刃木、Maxace 等品牌。接入完整数据源时，只需把标准化后的记录映射成 `KNIVES` 的字段格式；渲染层以 InstancedMesh、双层合批 Points 和合并 LineSegments 控制 draw call，不会为每颗星球创建独立 DOM 或 Mesh。
+初始模拟数据已清空。正式内容通过 `admin.html` 上传到 Supabase；渲染层以 InstancedMesh、双层合批 Points 和合并 LineSegments 控制 draw call，不会为每颗星球创建独立 DOM 或 Mesh。
 
 中英文界面与刀具英文介绍位于 `src/i18n.js`。语言偏好会写入浏览器本地存储并在下次访问时恢复。
 
 不同节点类别由同一实例化 ShaderMaterial 呈现不同材质逻辑：刀具为冷白金属切面，品牌为暖色脉动表面，钢材为蓝色晶体反射，锁定为紫色机械环纹，类型为柔和渐变，产地为经纬线式表面。选中节点时会保留两跳关系并自动调整相机构图。
+
+## Supabase 数据源
+
+页面优先读取 Supabase；若网络不可用、数据库暂停或尚未初始化，会自动使用打包在 `wiki/` 中的快照。公开网站只使用 publishable key，并由数据库 RLS 限制为只读。`admin.html` 提供需要管理员登录的 JSON 上传入口。
+
+首次初始化：
+
+1. 在 Supabase Dashboard 的 **SQL Editor** 中执行 `supabase/migrations/202607020001_create_atlas.sql`。
+2. 执行 `supabase/migrations/202607020002_admin_upload.sql`，清空模拟数据并启用管理员写入。
+3. 在 Supabase **Authentication → Users** 创建管理员，再在 SQL Editor 执行：
+
+```sql
+insert into public.admin_users(user_id) values ('管理员的 User UUID');
+```
+
+随后访问 `/admin.html` 登录并下载 JSON 模板。日常编辑也可以使用 Supabase Table Editor；`wiki/` 继续充当可版本控制的静态快照。
 
 ## Wiki 贡献与发布
 

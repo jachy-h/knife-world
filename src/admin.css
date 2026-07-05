@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500;600&family=Syne:wght@500;600&display=swap');
+:root { color:#e8edf1; background:#06090d; font-family:'Noto Sans SC',sans-serif; }
+* { box-sizing:border-box; } body { margin:0; min-height:100vh; background:radial-gradient(circle at 70% 20%,#10222c 0,transparent 32%),#06090d; }
+.admin-shell { width:min(760px,calc(100% - 32px)); margin:auto; padding:32px 0 80px; }
+nav { display:flex; justify-content:space-between; color:#62717c; font:10px 'DM Mono'; letter-spacing:.14em; } nav a { color:#8bcfe6; text-decoration:none; }
+.admin-card { margin-top:56px; padding:48px; border:1px solid #26323a; border-radius:10px; background:rgba(10,15,20,.84); box-shadow:0 30px 80px rgba(0,0,0,.45); }
+.eyebrow { color:#68ccef; font:9px 'DM Mono'; letter-spacing:.18em; } h1 { margin:12px 0; font:600 48px 'Syne','Noto Sans SC'; } .intro { color:#8d9aa3; font-size:13px; line-height:1.8; }
+.login-form { display:grid; gap:16px; margin-top:34px; } label { display:grid; gap:8px; color:#788791; font-size:11px; }
+input { width:100%; padding:13px; border:1px solid #2a3740; border-radius:5px; outline:none; color:white; background:#090e13; } input:focus { border-color:#67cdec; }
+button { padding:12px 18px; border:1px solid #3985a0; border-radius:5px; color:#c8f2ff; background:#102c38; cursor:pointer; } button:disabled { opacity:.35; cursor:not-allowed; }
+.upload-panel { margin-top:30px; }.session-row,.actions { display:flex; align-items:center; justify-content:space-between; gap:12px; }.session-row { color:#74848e; font:10px 'DM Mono'; }
+.drop-zone { display:flex; align-items:center; justify-content:center; min-height:190px; margin:18px 0; padding:25px; border:1px dashed #38505d; border-radius:7px; text-align:center; cursor:pointer; }.drop-zone input { display:none; }.drop-zone strong { color:#c8e8f2; font-size:16px; }.drop-zone span { color:#60717b; font:9px 'DM Mono'; }
+.actions { justify-content:flex-end; } pre { min-height:80px; padding:16px; color:#8fa4b0; background:#080c10; border:1px solid #1d272e; border-radius:5px; font:11px/1.7 'DM Mono'; }
+#status { min-height:20px; margin-top:18px; font-size:12px; color:#87959e; }.success { color:#73dca5!important; }.error { color:#ff8f8f!important; }
+@media(max-width:600px) { .admin-card { padding:28px 20px; } h1 { font-size:38px; }.actions { align-items:stretch; flex-direction:column; } }

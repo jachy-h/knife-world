@@ -1,5 +1,6 @@
 const knifeFiles = import.meta.glob('../wiki/knives/*.md', { query: '?raw', import: 'default', eager: true });
 const attributeFiles = import.meta.glob('../wiki/attributes/**/*.md', { query: '?raw', import: 'default', eager: true });
+import { fetchRemoteWiki } from './supabase.js';
 
 function parseMarkdown(raw) {
   const match = raw.match(/^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/);
@@ -18,9 +19,19 @@ function parseMarkdown(raw) {
   return { ...data, description: section('中文'), descriptionEn: section('English') };
 }
 
-export const KNIVES = Object.values(knifeFiles).map(parseMarkdown).filter(Boolean).sort((a, b) => (a.order || 0) - (b.order || 0));
+const localKnives = Object.values(knifeFiles).map(parseMarkdown).filter(Boolean).sort((a, b) => (a.order || 0) - (b.order || 0));
+const localAttributes = Object.values(attributeFiles).map(parseMarkdown).filter(Boolean);
+
+let remoteWiki = null;
+try {
+  remoteWiki = await fetchRemoteWiki();
+} catch (error) {
+  console.warn('Supabase wiki unavailable; using the bundled snapshot.', error);
+}
+
+export const KNIVES = remoteWiki?.knives || localKnives;
 export const ATTRIBUTE_ENTRIES = new Map(
-  Object.values(attributeFiles).map(parseMarkdown).filter(Boolean).map(entry => [entry.key || `${entry.category}:${entry.value}`, entry]),
+  (remoteWiki?.attributes || localAttributes).map(entry => [entry.key || `${entry.category}:${entry.value}`, entry]),
 );
 
 export const ATTRIBUTE_META = {

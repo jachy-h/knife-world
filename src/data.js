@@ -1,30 +1,6 @@
-export const KNIVES = [
-  { id:'benchmade-940', name:'940 Osborne', brand:'Benchmade', steel:'CPM S30V', lock:'AXIS Lock', style:'EDC', origin:'USA', year:2000, designer:'Warren Osborne', blade:'86 mm', weight:'82 g', description:'一把具有建筑感轮廓的经典 EDC。反向刃尖与纤薄刀身，让它在轻巧和可靠之间取得罕见平衡。' },
-  { id:'spyderco-pm2', name:'Paramilitary 2', brand:'Spyderco', steel:'CPM S45VN', lock:'Compression Lock', style:'户外', origin:'USA', year:2010, designer:'Sal Glesser', blade:'87 mm', weight:'111 g', description:'强调控制力与实用性的现代经典。标志性圆孔、全平磨和压缩锁构成了极易辨识的工具语言。' },
-  { id:'chris-reeve-sebenza', name:'Small Sebenza 31', brand:'Chris Reeve', steel:'CPM MagnaCut', lock:'Frame Lock', style:'绅士', origin:'USA', year:2020, designer:'Chris Reeve', blade:'75 mm', weight:'85 g', description:'将钛柄折刀带入现代语境的标杆。精密、公差与克制的设计共同定义了“工业珠宝”。' },
-  { id:'civivi-elementum', name:'Elementum II', brand:'CIVIVI', steel:'Nitro-V', lock:'Button Lock', style:'EDC', origin:'China', year:2023, designer:'CIVIVI', blade:'75 mm', weight:'93 g', description:'干净的弧线、友好的比例与顺滑的按钮锁，组成一把没有多余语汇的日常折刀。' },
-  { id:'we-banter', name:'Banter', brand:'WE Knife', steel:'CPM S35VN', lock:'Liner Lock', style:'EDC', origin:'China', year:2020, designer:'Ben Petersen', blade:'74 mm', weight:'80 g', description:'低调却很有性格的口袋工具。中性握感和亲切外形，让功能几乎隐入日常。' },
-  { id:'kizer-drop-bear', name:'Drop Bear', brand:'Kizer', steel:'154CM', lock:'Clutch Lock', style:'EDC', origin:'China', year:2022, designer:'Azo', blade:'76 mm', weight:'104 g', description:'以可调节横轴锁和宽刃轮廓形成鲜明触感，是新一代高性价比 EDC 的代表。' },
-  { id:'quiet-carry-drift', name:'The Drift', brand:'Quiet Carry', steel:'Vanax', lock:'Frame Lock', style:'海事', origin:'USA', year:2020, designer:'Quiet Carry', blade:'76 mm', weight:'73 g', description:'为潮湿与盐雾而生的极简折刀。耐蚀钢材与钛结构让它适合真正无负担的随身携带。' },
-  { id:'giantmouse-ace-riv', name:'ACE Riv', brand:'GiantMouse', steel:'Elmax', lock:'Liner Lock', style:'EDC', origin:'Italy', year:2021, designer:'Vox / Ansø', blade:'61 mm', weight:'99 g', description:'一把短小、圆润、带北欧工业气息的第五口袋刀，尺寸收敛但握持饱满。' },
-  { id:'fox-radius', name:'Radius', brand:'Fox Knives', steel:'M390', lock:'Radius Lock', style:'收藏', origin:'Italy', year:2019, designer:'Denis Simonutti', blade:'75 mm', weight:'140 g', description:'用旋转滑轨重新想象折刀开合方式。机械结构成为视觉中心，像一件可操作的小型雕塑。' },
-  { id:'lionsteel-my-to', name:'Myto', brand:'LionSteel', steel:'M390', lock:'Frame Lock', style:'户外', origin:'Italy', year:2021, designer:'Michele Pensato', blade:'83 mm', weight:'101 g', description:'整体钛柄、可拆卸翻片与坚实刃形，呈现意大利制造对结构完整性的偏爱。' },
-  { id:'victorinox-climber', name:'Climber', brand:'Victorinox', steel:'1.4110', lock:'Slip Joint', style:'多功能', origin:'Switzerland', year:1991, designer:'Victorinox', blade:'68 mm', weight:'82 g', description:'口袋里的微型工具箱。红色赛璐珞鳞片与层叠工具，已成为跨越文化的工业符号。' },
-  { id:'opinel-no8', name:'No. 8', brand:'Opinel', steel:'Sandvik 12C27', lock:'Virobloc', style:'传统', origin:'France', year:1890, designer:'Joseph Opinel', blade:'85 mm', weight:'46 g', description:'山毛榉木、薄刃与旋转环锁构成一种法国式的朴素。它几乎是“刀”这个概念的速写。' },
-  { id:'boker-barlow', name:'Barlow BFF', brand:'Böker', steel:'AEB-L', lock:'Fixed Blade', style:'传统', origin:'Germany', year:2021, designer:'Lucas Burnley', blade:'66 mm', weight:'60 g', description:'把传统 Barlow 比例转译成紧凑直刀，温和的外形下保留完整工具属性。' },
-  { id:'mcusta-mc1', name:'MC-1', brand:'Mcusta', steel:'VG-10', lock:'Liner Lock', style:'绅士', origin:'Japan', year:2018, designer:'Mcusta', blade:'70 mm', weight:'89 g', description:'机械切削与手工收尾并置，流畅轮廓和层次钢纹理体现关市刀具传统的当代表达。' },
-  { id:'rockstead-higo', name:'HIGO II', brand:'Rockstead', steel:'YXR7', lock:'Frame Lock', style:'收藏', origin:'Japan', year:2017, designer:'Rockstead', blade:'89 mm', weight:'136 g', description:'镜面刃与高硬度钢材把加工推向近乎偏执的程度，是功能物件与工艺藏品的交界。' },
-  { id:'esee-izula', name:'Izula II', brand:'ESEE', steel:'1095', lock:'Fixed Blade', style:'生存', origin:'USA', year:2010, designer:'Randall’s Adventure', blade:'67 mm', weight:'91 g', description:'简洁、厚实、易维护的小型直刀。它不隐藏工具性，反而将可靠作为唯一装饰。' },
-  { id:'morakniv-garberg', name:'Garberg', brand:'Morakniv', steel:'Sandvik 14C28N', lock:'Fixed Blade', style:'生存', origin:'Sweden', year:2016, designer:'Morakniv', blade:'109 mm', weight:'170 g', description:'全龙骨结构与斯堪的纳维亚开刃，体现北欧户外工具直接、耐用的核心哲学。' },
-  { id:'demko-ad20', name:'AD20.5', brand:'Demko Knives', steel:'CPM 3V', lock:'Shark Lock', style:'战术', origin:'Taiwan', year:2021, designer:'Andrew Demko', blade:'76 mm', weight:'99 g', description:'鲨鱼锁带来强烈而直观的机械反馈，宽阔刃形则把力量感压缩进便携尺度。' },
-  { id:'spyderco-spydiechef', name:'SpydieChef', brand:'Spyderco', steel:'LC200N', lock:'Frame Lock', style:'海事', origin:'Taiwan', year:2017, designer:'Marcin Slysz', blade:'84 mm', weight:'108 g', description:'耐腐蚀氮基钢、钛柄与厨刀式刃腹形成一把真正面向水边环境的全天候折刀。' },
-  { id:'benchmade-bugout', name:'Bugout 535', brand:'Benchmade', steel:'CPM S30V', lock:'AXIS Lock', style:'户外', origin:'USA', year:2017, designer:'Benchmade', blade:'82 mm', weight:'52 g', description:'以极低重量完成完整尺寸的切割能力，Bugout 已成为超轻户外折刀的当代坐标。' },
-  { id:'cold-steel-ad10', name:'AD-10', brand:'Cold Steel', steel:'CPM S35VN', lock:'Tri-Ad Lock', style:'战术', origin:'Taiwan', year:2019, designer:'Andrew Demko', blade:'89 mm', weight:'195 g', description:'厚实刃形、全尺寸握柄与 Tri-Ad 锁，把冷钢对强度和可靠性的偏执浓缩进一把折刀。' },
-  { id:'sog-terminus-xr', name:'Terminus XR', brand:'SOG', steel:'CPM S35VN', lock:'XR Lock', style:'EDC', origin:'China', year:2019, designer:'SOG', blade:'75 mm', weight:'82 g', description:'三种开启方式与可双手操作的 XR 锁结合，呈现 SOG 新一代城市工具的紧凑效率。' },
-  { id:'crkt-pilar-iii', name:'Pilar III', brand:'CRKT', steel:'D2', lock:'Liner Lock', style:'EDC', origin:'China', year:2021, designer:'Jesper Voxnaes', blade:'68 mm', weight:'121 g', description:'Voxnaes 将宽阔羊蹄刃和收敛手柄组合成短促有力的轮廓，像一件口袋尺寸的建筑构件。' },
-  { id:'sanrenmu-land-9103', name:'LAND 9103', brand:'三刃木', steel:'Sandvik 12C27', lock:'Liner Lock', style:'户外', origin:'China', year:2016, designer:'三刃木', blade:'91 mm', weight:'120 g', description:'以成熟结构、瑞典钢材与务实人体工学建立口碑，是中国量产折刀走向精细制造的代表之一。' },
-  { id:'maxace-black-mirror', name:'Black Mirror', brand:'Maxace', steel:'M390', lock:'Frame Lock', style:'收藏', origin:'China', year:2022, designer:'Maxace', blade:'88 mm', weight:'119 g', description:'钛、碳纤维与高性能钢材被压缩进锐利的几何切面，体现中国高端量产刀具的精密表达。' },
-];
+// Historical simulation records were intentionally removed.
+// This empty seed keeps `npm run wiki:generate` deterministic until real data is exported.
+export const KNIVES = [];
 
 export const ATTRIBUTE_META = {
   brand: { title: '品牌谱系', description: '制造者决定了一把刀的设计语言、工艺传统与价值取向。' },

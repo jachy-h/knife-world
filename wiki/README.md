@@ -1,6 +1,6 @@
 # Knife World Wiki
 
-本目录是网站唯一的内容源。每把刀和每个属性都是独立 Markdown，适合通过 Pull Request 补充或校正。
+本目录是网站的静态快照和 Supabase 故障兜底。正式数据通过网站的 `/admin.html` 上传。
 
 - `knives/`：每把刀一份文档；`materials` 与 `tags` 均为数组。
 - `attributes/brand/`：品牌。
